@@ -7,8 +7,8 @@ import java.util.Optional;
 
 public interface HeroesService {
     public List<Heroes> findAllHeroes();
-    public Heroes findByIdHeroes();
-    public Heroes createHeroes();
+    public Optional findByIdHeroes(String name);
+    public Heroes createHeroes(Heroes heroes);
     public Heroes UpdateHeroes();
-    public Heroes deleteHerores();
+    public Heroes deleteHeroes(String name);
 }

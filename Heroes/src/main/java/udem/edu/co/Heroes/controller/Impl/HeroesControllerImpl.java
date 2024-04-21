@@ -1,10 +1,13 @@
 package udem.edu.co.Heroes.controller.Impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import udem.edu.co.Heroes.entities.Heroes;
 import udem.edu.co.Heroes.service.HeroesService;
 
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,34 +15,33 @@ import java.util.Optional;
 @RequestMapping(path = "/api/v1")
 public class HeroesControllerImpl {
 
+    @Autowired
     HeroesService heroesService;
 
-    public HeroesControllerImpl(HeroesService heroesService) {
-        this.heroesService = heroesService;
-    }
 
     @GetMapping("/heroes/")
     public List<Heroes> findAllHeroes() {
-        return this.heroesService.findAllHeroes();
+        return heroesService.findAllHeroes();
     }
 
     @GetMapping("/heroes/{name}")
-    public Optional<Heroes> findHeroesById(@RequestParam("nombre") int name) {
-        return this.heroesService.findByIdHeroes();
+    public Optional<Heroes> findHeroesById(@RequestParam("nombre") String name) {
+        return heroesService.findByIdHeroes(name);
     }
 
     @PostMapping("/heroes")
-    public Heroes updateHeroes(@RequestBody() Heroes heroes) {
+    public Heroes updateHeroes(@RequestBody() Heroes heroes){
+        return heroesService.createHeroes(heroes);
+    }
+
+
+    @PutMapping("/heroes/{name}")
+    public ResponseEntity<Heroes> updateHeroes(@RequestParam("name") String name ){
         return null;
     }
 
-    @PutMapping("/heroes/{idHeroes}")
-    public ResponseEntity<Heroes> updateHeroes(@RequestParam("idHeroes") int idHeroes ){
-        return null;
-    }
-
-    @DeleteMapping("/Heroes/{idHeroes}")
-    public ResponseEntity<Heroes> deleteHeroes(@PathVariable("idHeroes") int idHeroes) {
-        return null;
+    @DeleteMapping("/Heroes/{name}")
+    public Heroes deleteHeroes(@PathVariable("name") String name) {
+        return heroesService.deleteHeroes(name);
     }
 }

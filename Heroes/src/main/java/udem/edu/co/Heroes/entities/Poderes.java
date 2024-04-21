@@ -14,4 +14,5 @@ public class Poderes {
 
     @Id
     private String name;
+    private String descripcion;
 }

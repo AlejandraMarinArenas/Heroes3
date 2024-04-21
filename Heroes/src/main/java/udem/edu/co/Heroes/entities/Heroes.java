@@ -16,7 +16,6 @@ import java.util.List;
 public class Heroes {
 
     @Id
-
     private String name;
     private List<Poderes> poderes;
 

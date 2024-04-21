@@ -26,12 +26,12 @@ public class PoderesServiceImpl implements PoderesService {
 
     @Override
     public List<Poderes> findAllPoderes() {
-        return null;
+        return poderesRepository.findAll();
     }
 
     @Override
     public Poderes findByIdPoderes() {
-        return null;
+        return poderesRepository.findById();
     }
 
     @Override
@@ -60,11 +60,11 @@ public class PoderesServiceImpl implements PoderesService {
 
     @Override
     public Poderes UpdatePoderes(){
-        return null;
+        return poderesRepository.UpdatePoderes();
     }
 
     @Override
     public Poderes deletePoderes(){
-        return null;
+        return poderesRepository.delete();
     }
 }
