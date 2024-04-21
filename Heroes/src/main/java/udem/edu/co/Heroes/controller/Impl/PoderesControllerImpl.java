@@ -12,36 +12,33 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(path = "/api/v1")
+@RequestMapping(path = "/poderes")
 public class PoderesControllerImpl {
 
-    @Autowired
     PoderesService poderesService;
-
 
     @GetMapping("/poderes/")
     public List<Poderes> findAllPoderes() {
-        return poderesService.findAllPoderes();
+        return this.poderesService.findAllPoderes();
     }
 
     @GetMapping("/poderes/{name}")
-    public Optional<Poderes> findPoderesById(@RequestParam("nombre") String name) {
-        return poderesService.findByIdPoderes(name);
+    public Optional<Poderes> findPoderesById(@RequestParam("name") String name) {
+        return this.poderesService.findByIdPoderes(name);
     }
 
     @PostMapping("/poderes")
-    public Poderes updatePoderes(@RequestBody() Poderes poderes){
-        return poderesService.createPoderes(poderes);
+    public Poderes createPoderes(@RequestBody() Poderes poderes)  {
+        return this.poderesService.createPoderes(poderes);
     }
-
 
     @PutMapping("/poderes/{name}")
-    public ResponseEntity<Poderes> updatePoderes(@RequestParam("name") String name ){
-        return null;
+    public Poderes updatePoderes(@RequestParam("name") String name, @RequestBody() Poderes poderes){
+        return this.poderesService.updatePoderes(name, poderes);
     }
 
-    @DeleteMapping("/Heroes/{name}")
-    public Heroes deleteHeroes(@PathVariable("name") String name) {
-        return poderesService.deletePoderes(name);
+    @DeleteMapping("/poderes/{name}")
+    public void deletePoderes(@PathVariable("name") String name) {
+        this.poderesService.deletePoderes(name);
     }
 }

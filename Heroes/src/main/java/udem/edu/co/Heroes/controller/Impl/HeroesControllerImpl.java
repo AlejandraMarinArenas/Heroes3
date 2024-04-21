@@ -12,36 +12,34 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(path = "/api/v1")
+@RequestMapping(path = "/heroes")
 public class HeroesControllerImpl {
 
     @Autowired
     HeroesService heroesService;
 
-
-    @GetMapping("/heroes/")
+    @GetMapping("/heroes")
     public List<Heroes> findAllHeroes() {
-        return heroesService.findAllHeroes();
+        return this.heroesService.findAllHeroes();
     }
 
     @GetMapping("/heroes/{name}")
-    public Optional<Heroes> findHeroesById(@RequestParam("nombre") String name) {
-        return heroesService.findByIdHeroes(name);
+    public Optional<Heroes> findHeroeById(@PathVariable("name") String name) {
+        return this.heroesService.findByIdHeroes(name);
     }
 
     @PostMapping("/heroes")
-    public Heroes updateHeroes(@RequestBody() Heroes heroes){
-        return heroesService.createHeroes(heroes);
+    public Heroes createHeroes(@RequestBody() Heroes heroe) {
+        return this.heroesService.createHeroes(heroe);
     }
-
 
     @PutMapping("/heroes/{name}")
-    public ResponseEntity<Heroes> updateHeroes(@RequestParam("name") String name ){
-        return null;
+    public Heroes updateHeroes(@PathVariable("name") String name , @RequestBody() Heroes heroe) {
+        return this.heroesService.updateHeroes(heroe);
     }
 
-    @DeleteMapping("/Heroes/{name}")
-    public Heroes deleteHeroes(@PathVariable("name") String name) {
-        return heroesService.deleteHeroes(name);
+    @DeleteMapping("/heroes/{name}")
+    public void deleteHeroes(@PathVariable("name") String name) {
+        this.heroesService.deleteHeroes(name);
     }
 }

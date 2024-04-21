@@ -41,6 +41,6 @@ public class HeroesServiceImplTest {
     void createHeroes(){
         List<Heroes> heroes = new ArrayList<>();
         heroes.add(new Heroes());
-        when(heroesRepository.createHeroes
+        when(heroesRepositoryli alejitah.save(heroes));
     }
 }

@@ -20,24 +20,22 @@ public class HeroesServiceImpl implements HeroesService {
         return (List<Heroes>) heroesRepository.findAll();
     }
 
-
     @Override
     public Optional<Heroes> findByIdHeroes(String name){
-        return heroesRepository.findById(name);
+        return (Optional<Heroes>) heroesRepository.findById(name);
     }
     @Override
     public Heroes createHeroes(Heroes heroes){
-        return heroesRepository.save(heroes);
+        return (Heroes) heroesRepository.save(heroes);
     }
     @Override
-    public Heroes UpdateHeroes(){
-        return null;
+    public Heroes updateHeroes(Heroes heroes){
+        return (Heroes) heroesRepository.save(heroes);
     }
     @Override
-    public Heroes deleteHeroes(String name){
+    public void deleteHeroes(String name){
         Heroes heroes = new Heroes();
         heroes.setName(name);
         heroesRepository.delete(heroes);
-        return heroes;
     }
 }
